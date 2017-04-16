@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lato" rel="stylesheet">
+        <link rel="stylesheet" href="src/assets/styles/normalize.css">
+        <link rel="stylesheet" href="src/assets/styles/main.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <div id="content">
+            <div class="wrapper">
+
+                <div id="todos-main">
+
+                    <div class="todos">
+                        <div class="form">
+                            <div class="field">
+                                <input type="text" placeholder="What needs to be done?" data-bind="value:currentTodo">
+                                <button data-bind="click: addTodo">Add</button>
+                            </div>
+                        </div>
+
+                        <div data-bind="visible: todos().length">
+                            <ul data-bind="foreach: todos" class="reset">
+                                <li class="clearfix" 
+                                    data-bind="css: { 
+                                        completed: $data.completed,
+                                        editing: $data.editing
+                                    }">
+                                    <div class="check">
+                                        <i class="fa fa-square-o" 
+                                            aria-hidden="true" 
+                                            data-bind="visible: !$data.completed(), click: $root.toggleComplete" 
+                                            title="Mark Complete">
+                                        </i>
+                                        <i class="fa fa-check-square-o" 
+                                            aria-hidden="true" 
+                                            data-bind="visible: $data.completed(), click: $root.toggleComplete" 
+                                            title="Mark Incomplete">
+                                        </i>
+                                    </div>
+                                    <h2 class="title" data-bind="text: $data.title"></h2>
+
+                                    <div class="edit">
+                                        <div class="field">
+                                            <input type="text" data-bind="value: $data.title">
+                                        </div>
+                                    </div>
+
+                                    <div class="actions">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit" data-bind="click: $root.editTodo"></i>
+                                        <i class="fa fa-trash-o" aria-hidden="true" title="Remove" data-bind="click: $root.removeTodo"></i>
+                                        <i class="fa fa-floppy-o" aria-hidden="true" data-bind="click: $root.saveEdit"></i>
+                                        <i class="fa fa-times" aria-hidden="true" data-bind="click: $root.cancelEdit"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script src="https://use.fontawesome.com/f3e197b0b0.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.0.min.js"><\/script>')</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+        <script>window.ToDo = {};</script>
+        <script src="src/app/todo/model.js"></script>
+        <script src="src/app/todo/viewModel.js"></script>
+        <script src="src/app/todo/view.js"></script>
+
+        <script src="src/app/main.js"></script>
+    </body>
+</html>
