@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
+        <title>geterdone : todo extraordinaire</title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
         <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lato" rel="stylesheet">
         <link rel="stylesheet" href="src/assets/styles/normalize.css">
         <link rel="stylesheet" href="src/assets/styles/main.css">
@@ -15,61 +15,123 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
+        <header id="header">
+            <div class="wrapper clearfix">
+                <div class="col col-a">
+                    <a href="index.html" class="logo"><img src="src/assets/images/logo.png"></a>
+                </div>
+                
+                <div class="col col-b">
+                    <nav>
+                        <ul class="reset clearfix">
+                            <li><a href="todo.html" class="cta">Try it Now</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
         <div id="content">
             <div class="wrapper">
 
                 <div id="todos-main">
 
-                    <div class="todos">
-                        <div class="form">
-                            <div class="field">
-                                <input type="text" placeholder="What needs to be done?" data-bind="value:currentTodo">
-                                <button data-bind="click: addTodo">Add</button>
+                    <div class="form">
+                        <div class="field clearfix">
+                            <div class="col col-a">
+                                <input type="text" placeholder="Enter Todo List Name" data-bind="value:currentTodoList, enterKey: addTodoList">
+                            </div>
+
+                            <div class="col col-b align-right">
+                                <button data-bind="click: addTodoList">Create Todo List</button>
                             </div>
                         </div>
+                    </div>
 
-                        <div data-bind="visible: todos().length">
-                            <ul data-bind="foreach: todos" class="reset">
-                                <li class="clearfix" 
+                    <div class="todo-lists">
+
+                        <div data-bind="visible: todoLists().length">
+                            <ul data-bind="foreach: todoLists" class="clearfix reset flexbox-container">
+                                <li class="list clearfix" 
                                     data-bind="css: { 
-                                        completed: $data.completed,
-                                        editing: $data.editing
-                                    }">
-                                    <div class="check">
-                                        <i class="fa fa-square-o" 
-                                            aria-hidden="true" 
-                                            data-bind="visible: !$data.completed(), click: $root.toggleComplete" 
-                                            title="Mark Complete">
-                                        </i>
-                                        <i class="fa fa-check-square-o" 
-                                            aria-hidden="true" 
-                                            data-bind="visible: $data.completed(), click: $root.toggleComplete" 
-                                            title="Mark Incomplete">
-                                        </i>
-                                    </div>
-                                    <h2 class="title" data-bind="text: $data.title"></h2>
+                                        'editing-list': $data.editing
+                                    }"
+                                >
+                                    <header class="clearfix">
+                                        <h2 class="title" data-bind="click: $root.editTodoList.bind($data)"><span data-bind="text: $data.title"></span></h2>
+                                        <div class="actions align-right">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit" data-bind="click: $root.editTodoList.bind($data)"></i>
+                                            <i class="fa fa-trash-o" aria-hidden="true" title="Remove" data-bind="click: $root.removeTodoList.bind($data)"></i>
+                                            <i class="fa fa-floppy-o" aria-hidden="true" data-bind="click: $root.saveEditList.bind($data)" title="Save"></i>
+                                            <i class="fa fa-times" aria-hidden="true" data-bind="click: $root.cancelEditList.bind($data)" title="Cancel"></i>
+                                        </div>
+                                        <div class="edit">
+                                            <div class="field">
+                                                <input type="text" data-bind="value: $data.title">
+                                            </div>
+                                        </div>
+                                    </header>
 
-                                    <div class="edit">
-                                        <div class="field">
-                                            <input type="text" data-bind="value: $data.title">
+                                    <div class="form">
+                                        <div class="field clearfix">
+                                            <div class="col col-a">
+                                                <input type="text" placeholder="Enter Todo Item" data-bind="value:$data.currentTodo, enterKey: $root.addTodo.bind($data)">
+                                            </div>
+
+                                            <div class="col col-b align-right">
+                                                <button data-bind="click: $root.addTodo.bind($data)">Add Todo</button>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="actions">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit" data-bind="click: $root.editTodo"></i>
-                                        <i class="fa fa-trash-o" aria-hidden="true" title="Remove" data-bind="click: $root.removeTodo"></i>
-                                        <i class="fa fa-floppy-o" aria-hidden="true" data-bind="click: $root.saveEdit"></i>
-                                        <i class="fa fa-times" aria-hidden="true" data-bind="click: $root.cancelEdit"></i>
+                                    <div data-bind="visible: $data.todos().length">
+                                    
+                                        <ul data-bind="foreach: $data.todos" class="todo reset">
+                                            <li class="clearfix" 
+                                                data-bind="css: { 
+                                                    completed: $data.completed,
+                                                    editing: $data.editing
+                                                }">
+                                                <div class="check">
+                                                    <i class="fa fa-square-o" 
+                                                        aria-hidden="true" 
+                                                        data-bind="visible: !$data.completed(), click: $root.toggleComplete.bind($root, $parent)" 
+                                                        title="Mark Complete">
+                                                    </i>
+                                                    <i class="fa fa-check-square-o" 
+                                                        aria-hidden="true" 
+                                                        data-bind="visible: $data.completed(), click: $root.toggleComplete.bind($root, $parent)" 
+                                                        title="Mark Incomplete">
+                                                    </i>
+                                                </div>
+                                                <h2 class="title" data-bind="text: $data.title, click: $root.editTodo.bind($root, $parent)"></h2>
+
+                                                <div class="edit">
+                                                    <div class="field">
+                                                        <input type="text" data-bind="value: $data.title">
+                                                    </div>
+                                                </div>
+
+                                                <div class="actions align-right">
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true" title="Edit" data-bind="click: $root.editTodo.bind($root, $parent)"></i>
+                                                    <i class="fa fa-trash-o" aria-hidden="true" title="Remove" data-bind="click: $root.removeTodo.bind($root, $parent)"></i>
+                                                    <i class="fa fa-floppy-o" aria-hidden="true" data-bind="click: $root.saveEdit.bind($root, $parent)" title="Save"></i>
+                                                    <i class="fa fa-times" aria-hidden="true" data-bind="click: $root.cancelEdit.bind($root, $parent)" title="Cancel"></i>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
+
+        <footer id="footer" class="align-center">
+            <small>&copy; 2017 geterdone, Inc.  All rights reserved</small>
+        </footer>
 
         <script src="https://use.fontawesome.com/f3e197b0b0.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>

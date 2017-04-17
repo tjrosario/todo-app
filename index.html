@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
+        <title>geterdone : todo extraordinaire</title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Open+Sans" rel="stylesheet">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lato" rel="stylesheet">
         <link rel="stylesheet" href="src/assets/styles/normalize.css">
         <link rel="stylesheet" href="src/assets/styles/main.css">
     </head>
@@ -15,14 +15,100 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+        <header id="header">
+            <div class="wrapper clearfix">
+                <div class="col col-a">
+                    <a href="index.html" class="logo"><img src="src/assets/images/logo.png"></a>
+                </div>
+                
+                <div class="col col-b">
+                    <nav>
+                        <ul class="reset clearfix">
+                            <li><a href="todo.html" class="cta">Try it Now</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <div id="content">
+            <div class="wrapper">
+
+                <section class="howitworks align-center">
+                    <h2>How it works</h2>
+                    <p>geterdone makes it easy to manage your daily workload</p>  
+
+                    <ol class="reset clearfix">
+                        <li>
+                            <div class="digit">1</div>
+                            <h3>Start by creating a Todo list</h3>
+                        </li>
+                        <li>
+                            <div class="digit">2</div>
+                            <h3>Give your Todo task a name</h3>
+                        </li>
+                        <li>
+                            <div class="digit">3</div>
+                            <h3>Save and update your tasks anytime</h3>
+                        </li>
+                    </ol>
+
+                    <a href="todo.html" class="cta">Try it Now</a>
+                </section>
+
+                <section class="testimonials align-center">
+                    <h2>Don't take it from us, here's what our customers say</h2>
+
+                    <ul class="reset clearfix">
+                        <li>
+                            <div class="photo">
+                                <img src="http://i519.photobucket.com/albums/u357/notmoore/DAYSOFTHUNDERCover.jpg">
+                            </div>
+                            <p class="quote">"Holy sh*t, best app ever"</p>
+                            <p>&mdash; Cole Trickle, NASCAR Driver</p>
+                        </li>
+                        <li>
+                            <div class="photo">
+                                <img src="https://tvandmoviegists.files.wordpress.com/2014/09/egon-spengler-ghostbusters.jpg">
+                            </div>
+                            <p class="quote">"I get IT done with geterdone"</p>
+                            <p>&mdash; Egon Spengler, Ghost Exterminator</p>
+                        </li>
+                        <li>
+                            <div class="photo">
+                                <img src="http://golf.swingbyswing.com/wp-content/uploads/2013/10/Shooter_McGavin_Feture1-482x444.jpg">
+                            </div>
+                            <p class="quote">"Never been so organized in my life!"</p>
+                            <p>&mdash; Shooter McGavin, PGA Pro</p>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="social align-center">
+                    <h2>Share geterdone with your friends</h2>
+                    <ul class="reset">
+                        <li><a target="_blank" href="https://www.facebook.com/LarryTheCableGuy/"><i class="fa fa-facebook"></i></a></li>
+                        <li><a target="_blank" href="https://twitter.com/GitRDoneLarry"><i class="fa fa-twitter"></i></a></li>
+                        <li><a target="_blank" href="https://plus.google.com/116129788493867271854/posts/JttmDe4dtaE"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a target="_blank" href="https://www.linkedin.com/in/larry-the-cable-guy-374b17131/"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </section>
+
+            </div>
+        </div>
+
+        <footer id="footer" class="align-center">
+            <small>&copy; 2017 geterdone, Inc.  All rights reserved</small>
+        </footer>
+
+        <script src="https://use.fontawesome.com/f3e197b0b0.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.0.min.js"><\/script>')</script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
-
+        <script>window.ToDo = {};</script>
         <script src="src/app/todo/model.js"></script>
         <script src="src/app/todo/viewModel.js"></script>
+        <script src="src/app/todo/view.js"></script>
 
         <script src="src/app/main.js"></script>
     </body>
